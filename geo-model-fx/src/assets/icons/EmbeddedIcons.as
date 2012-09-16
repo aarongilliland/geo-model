@@ -7,6 +7,6 @@ package assets.icons
 		}*/
 		
 		[Embed(source="hammer.png")]
-		public var hammer:Class;
+		[Bindable] public static var hammer:Class;
 	}
 }
