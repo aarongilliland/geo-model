@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:VGroup xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		  xmlns:s="library://ns.adobe.com/flex/spark" 
-		  xmlns:mx="library://ns.adobe.com/flex/mx" width="400" height="700" creationComplete="init()">
+		  xmlns:mx="library://ns.adobe.com/flex/mx" width="400" height="400" creationComplete="init()" xmlns:components="geo.model.components.*">
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
@@ -30,7 +30,7 @@
 				//this.getCapabilities(wpsURL);
 			}
 			
- 			private function getCapabilities(urlEndpoint:String = null):void {
+			private function getCapabilities(urlEndpoint:String = null):void {
 				trace("sending request");
 				var service:HTTPService = new HTTPService();
 				service.url = urlEndpoint;
@@ -51,17 +51,20 @@
 				try{
 					processTree.dataProvider(xmlList);
 				} catch (e:Error) {
-					Alert.show(e.message,"Tee doesn't like XMLLists that contain Namespaces.");
+					//Alert.show(e.message,"Tee doesn't like XMLLists that contain Namespaces.");
+					con.log(e.message);
 				}
 			}
 			
 			private function faultHandler(event:FaultEvent):void {
-				Alert.show(event.fault.faultString);
+				//Alert.show(event.fault.faultString);
+				con.log(event.fault.faultString);
 			}
 			
 			protected function showCapabilities_clickHandler(event:MouseEvent):void
 			{
 				getCapabilities(this.wpsURL);
+				
 			}
 			
 		]]>
@@ -69,4 +72,5 @@
 	
 	<s:Button label="Show Processes" id="showCapabilities" click="showCapabilities_clickHandler(event)" />
 	<mx:Tree id="processTree" labelField="Identifier"/>
+	<components:Console id="con" />
 </s:VGroup>

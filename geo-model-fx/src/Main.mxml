@@ -3,6 +3,11 @@
 			   xmlns:s="library://ns.adobe.com/flex/spark" 
 			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600"
 			   xmlns:gmcomp="geo.model.components.*" creationComplete="init()">
+	<fx:Script>
+		<![CDATA[
+			import assets.icons.EmbeddedIcons;
+		]]>
+	</fx:Script>
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
@@ -18,6 +23,11 @@
 		]]>
 	</fx:Script>
 	<s:HGroup>
-		<gmcomp:Capabilities id="capList" />
+		<s:VGroup>
+			<gmcomp:Capabilities id="capList" />
+			<gmcomp:Console id="con" />
+		</s:VGroup>
+		
+		<s:Button icon="{assets.icons.EmbeddedIcons.hammer}" />
 	</s:HGroup>
 </s:Application>
