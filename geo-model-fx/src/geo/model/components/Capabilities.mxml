@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:VGroup xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		  xmlns:s="library://ns.adobe.com/flex/spark" 
+		  xmlns:mx="library://ns.adobe.com/flex/mx" width="400" height="700" creationComplete="init()">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			import geo.model.utils.XMLUtil;
+			
+			import mx.controls.Alert;
+			import mx.rpc.AsyncToken;
+			import mx.rpc.Responder;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			import mx.rpc.http.HTTPService;
+			
+			/**
+			 * wpsURL: the URL endpoint for the Web Processing Service
+			 * This url must be set in this object's container.
+			 * It builds a list of all capabilities available on the server.
+			 * These capabilities are processes represented in Flash Objects
+			 * that can be dragged and dropped onto the model panel.
+			 */
+			[Bindable]public var wpsURL:String = "";
+			
+			private function init():void {
+				//this.getCapabilities(wpsURL);
+			}
+			
+ 			private function getCapabilities(urlEndpoint:String = null):void {
+				trace("sending request");
+				var service:HTTPService = new HTTPService();
+				service.url = urlEndpoint;
+				service.request = {request:"GetCapabilities"};
+				service.method = "GET";
+				service.resultFormat = "e4x";
+				service.useProxy = false;
+				var token:AsyncToken = new AsyncToken();
+				token = service.send();
+				token.addResponder(new mx.rpc.Responder(resultHandler,faultHandler));
+			} 
+			
+			private function resultHandler(event:ResultEvent):void {
+				var resultXML:XML = event.result as XML;
+				trace("RESULT");
+				trace(resultXML.toXMLString());
+				var xmlList:XMLList = XMLUtil.toProcessTree(resultXML);
+				try{
+					processTree.dataProvider(xmlList);
+				} catch (e:Error) {
+					Alert.show(e.message,"Tee doesn't like XMLLists that contain Namespaces.");
+				}
+			}
+			
+			private function faultHandler(event:FaultEvent):void {
+				Alert.show(event.fault.faultString);
+			}
+			
+			protected function showCapabilities_clickHandler(event:MouseEvent):void
+			{
+				getCapabilities(this.wpsURL);
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<s:Button label="Show Processes" id="showCapabilities" click="showCapabilities_clickHandler(event)" />
+	<mx:Tree id="processTree" labelField="Identifier"/>
+</s:VGroup>
