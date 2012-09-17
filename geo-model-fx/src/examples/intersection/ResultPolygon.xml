@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gml:Polygon xmlns:sch="http://www.ascc.net/xml/schematron"
+	xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<gml:exterior>
+		<gml:LinearRing>
+			<gml:posList>12.71874785423281 4.981770118077608 22.179197072983033
+				6.243163347244304 20.531247854233 -1.0078132152557 12.71874785423281
+				4.981770118077608</gml:posList>
+		</gml:LinearRing>
+	</gml:exterior>
+</gml:Polygon>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wps:ProcessDescriptions service="WPS" version="1.0.0"
+	xmlns:wps="http://www.opengis.net/wps/1.0.0" xmlns:ows="http://www.opengis.net/ows/1.1"
+	xmlns:xlink="http://www.w3.org/1999/xlink">
+	<wps:ProcessDescription wps:processVersion="1.0.0"
+		statusSupported="false" storeSupported="false">
+		<ows:Identifier>JTS:intersection</ows:Identifier>
+		<ows:Title>Returns the intersectoin between a and b (eventually an
+			empty collection if there is no intersection)</ows:Title>
+		<ows:Abstract>Returns the intersectoin between a and b (eventually an
+			empty collection if there is no intersection)</ows:Abstract>
+		<wps:DataInputs>
+			<wps:Input maxOccurs="1" minOccurs="1">
+				<ows:Identifier>a</ows:Identifier>
+				<ows:Title>a</ows:Title>
+				<ows:Abstract>[undescribed]</ows:Abstract>
+				<wps:ComplexData>
+					<wps:Default>
+						<wps:Format>
+							<wps:MimeType>text/xml; subtype=gml/3.1.1</wps:MimeType>
+						</wps:Format>
+					</wps:Default>
+					<wps:Supported>
+						<wps:Format>
+							<wps:MimeType>text/xml; subtype=gml/3.1.1</wps:MimeType>
+						</wps:Format>
+						<wps:Format>
+							<wps:MimeType>text/xml; subtype=gml/2.1.2</wps:MimeType>
+						</wps:Format>
+						<wps:Format>
+							<wps:MimeType>application/wkt</wps:MimeType>
+						</wps:Format>
+						<wps:Format>
+							<wps:MimeType>application/gml-3.1.1</wps:MimeType>
+						</wps:Format>
+						<wps:Format>
+							<wps:MimeType>application/gml-2.1.2</wps:MimeType>
+						</wps:Format>
+					</wps:Supported>
+				</wps:ComplexData>
+			</wps:Input>
+			<wps:Input maxOccurs="1" minOccurs="1">
+				<ows:Identifier>b</ows:Identifier>
+				<ows:Title>b</ows:Title>
+				<ows:Abstract>[undescribed]</ows:Abstract>
+				<wps:ComplexData>
+					<wps:Default>
+						<wps:Format>
+							<wps:MimeType>text/xml; subtype=gml/3.1.1</wps:MimeType>
+						</wps:Format>
+					</wps:Default>
+					<wps:Supported>
+						<wps:Format>
+							<wps:MimeType>text/xml; subtype=gml/3.1.1</wps:MimeType>
+						</wps:Format>
+						<wps:Format>
+							<wps:MimeType>text/xml; subtype=gml/2.1.2</wps:MimeType>
+						</wps:Format>
+						<wps:Format>
+							<wps:MimeType>application/wkt</wps:MimeType>
+						</wps:Format>
+						<wps:Format>
+							<wps:MimeType>application/gml-3.1.1</wps:MimeType>
+						</wps:Format>
+						<wps:Format>
+							<wps:MimeType>application/gml-2.1.2</wps:MimeType>
+						</wps:Format>
+					</wps:Supported>
+				</wps:ComplexData>
+			</wps:Input>
+		</wps:DataInputs>
+		<wps:ProcessOutputs>
+			<wps:Output>
+				<ows:Identifier>result</ows:Identifier>
+				<ows:Title>Process result</ows:Title>
+				<wps:ComplexOutput>
+					<wps:Default>
+						<wps:Format>
+							<wps:MimeType>text/xml; subtype=gml/3.1.1</wps:MimeType>
+						</wps:Format>
+					</wps:Default>
+					<wps:Supported>
+						<wps:Format>
+							<wps:MimeType>text/xml; subtype=gml/3.1.1</wps:MimeType>
+						</wps:Format>
+						<wps:Format>
+							<wps:MimeType>text/xml; subtype=gml/2.1.2</wps:MimeType>
+						</wps:Format>
+						<wps:Format>
+							<wps:MimeType>application/wkt</wps:MimeType>
+						</wps:Format>
+						<wps:Format>
+							<wps:MimeType>application/gml-3.1.1</wps:MimeType>
+						</wps:Format>
+						<wps:Format>
+							<wps:MimeType>application/gml-2.1.2</wps:MimeType>
+						</wps:Format>
+					</wps:Supported>
+				</wps:ComplexOutput>
+			</wps:Output>
+		</wps:ProcessOutputs>
+	</wps:ProcessDescription>
+</wps:ProcessDescriptions>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wps:Execute version="1.0.0" service="WPS" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.opengis.net/wps/1.0.0" xmlns:wfs="http://www.opengis.net/wfs" xmlns:wps="http://www.opengis.net/wps/1.0.0" xmlns:ows="http://www.opengis.net/ows/1.1" xmlns:gml="http://www.opengis.net/gml" xmlns:ogc="http://www.opengis.net/ogc" xmlns:wcs="http://www.opengis.net/wcs/1.1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xsi:schemaLocation="http://www.opengis.net/wps/1.0.0 http://schemas.opengis.net/wps/1.0.0/wpsAll.xsd">
+  <ows:Identifier>JTS:intersection</ows:Identifier>
+  <wps:DataInputs>
+    <wps:Input>
+      <ows:Identifier>a</ows:Identifier>
+      <wps:Reference mimeType="text/xml; subtype=gml/3.1.1" xlink:href="http://geoserver/wps" method="POST">
+        <wps:Execute>
+          <ows:Identifier>JTS:intersection</ows:Identifier>
+          <wps:DataInputs>
+            <wps:Input>
+              <ows:Identifier>a</ows:Identifier>
+              <wps:Data>
+                <wps:ComplexData mimeType="text/xml; subtype=gml/3.1.1"><![CDATA[POLYGON ((12.71874785423281 4.981770118077608, 22.179197072983033 6.243163347244304, 20.531247854233 -1.0078132152557, 12.71874785423281 4.981770118077608))]]></wps:ComplexData>
+              </wps:Data>
+            </wps:Input>
+            <wps:Input>
+              <ows:Identifier>b</ows:Identifier>
+              <wps:Data>
+                <wps:ComplexData mimeType="text/xml; subtype=gml/3.1.1"><![CDATA[POLYGON((-0.56250214576721 15.164061784744,20.179685354232895 23.953124284744007,24.046872854233 14.460936784744,20.531247854233 -1.0078132152557,-0.56250214576721 15.164061784744))]]></wps:ComplexData>
+              </wps:Data>
+            </wps:Input>
+          </wps:DataInputs>
+          <wps:ResponseForm>
+            <wps:RawDataOutput mimeType="text/xml; subtype=gml/3.1.1">
+              <ows:Identifier>result</ows:Identifier>
+            </wps:RawDataOutput>
+          </wps:ResponseForm>
+        </wps:Execute>
+      </wps:Reference>
+    </wps:Input>
+    <wps:Input>
+      <ows:Identifier>b</ows:Identifier>
+      <wps:Data>
+        <wps:ComplexData mimeType="text/xml; subtype=gml/3.1.1"><![CDATA[POLYGON((-5.4843771457672 0.39843678474426,2.9531228542328 -18.585938215256,30.374997854233 -10.851563215256,31.078122854233 -10.851563215256,26.859372854233 -1.7109382152557,-5.4843771457672 0.39843678474426))]]></wps:ComplexData>
+      </wps:Data>
+    </wps:Input>
+  </wps:DataInputs>
+  <wps:ResponseForm>
+    <wps:RawDataOutput mimeType="text/xml; subtype=gml/3.1.1">
+      <ows:Identifier>result</ows:Identifier>
+    </wps:RawDataOutput>
+  </wps:ResponseForm>
+</wps:Execute>
