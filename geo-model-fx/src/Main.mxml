@@ -24,10 +24,8 @@
 	</fx:Script>
 	<s:HGroup>
 		<s:VGroup>
-			<gmcomp:Capabilities id="capList" />
+			<gmcomp:Capabilities id="capList" width="200"/>
 			<gmcomp:Console id="con" />
 		</s:VGroup>
-		
-		<s:Button icon="{assets.icons.EmbeddedIcons.hammer}" />
 	</s:HGroup>
 </s:Application>

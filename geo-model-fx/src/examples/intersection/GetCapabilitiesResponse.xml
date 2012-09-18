@@ -1,0 +1,558 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wps:Capabilities xml:lang="en" service="WPS" version="1.0.0"
+	xmlns:wps="http://www.opengis.net/wps/1.0.0" xmlns:ows="http://www.opengis.net/ows/1.1"
+	xmlns:xlink="http://www.w3.org/1999/xlink">
+	<ows:ServiceIdentification>
+		<ows:Title>Prototype GeoServer WPS</ows:Title>
+		<ows:Abstract />
+		<ows:ServiceType>WPS</ows:ServiceType>
+		<ows:ServiceTypeVersion>1.0.0</ows:ServiceTypeVersion>
+	</ows:ServiceIdentification>
+	<ows:ServiceProvider>
+		<ows:ProviderName>OpenGeo</ows:ProviderName>
+		<ows:ProviderSite xlink:href="http://opengeo.org" />
+		<ows:ServiceContact />
+	</ows:ServiceProvider>
+	<ows:OperationsMetadata>
+		<ows:Operation name="GetCapabilities">
+			<ows:DCP>
+				<ows:HTTP>
+					<ows:Get xlink:href="http://localhost:18080/geoserver/wps" />
+					<ows:Post xlink:href="http://localhost:18080/geoserver/wps" />
+				</ows:HTTP>
+			</ows:DCP>
+		</ows:Operation>
+		<ows:Operation name="DescribeProcess">
+			<ows:DCP>
+				<ows:HTTP>
+					<ows:Get xlink:href="http://localhost:18080/geoserver/wps" />
+					<ows:Post xlink:href="http://localhost:18080/geoserver/wps" />
+				</ows:HTTP>
+			</ows:DCP>
+		</ows:Operation>
+		<ows:Operation name="Execute">
+			<ows:DCP>
+				<ows:HTTP>
+					<ows:Get xlink:href="http://localhost:18080/geoserver/wps" />
+					<ows:Post xlink:href="http://localhost:18080/geoserver/wps" />
+				</ows:HTTP>
+			</ows:DCP>
+		</ows:Operation>
+	</ows:OperationsMetadata>
+	<wps:ProcessOfferings>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>gt:Union</ows:Identifier>
+			<ows:Title>Union</ows:Title>
+			<ows:Abstract>Union 2 or more geometries together</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>gt:VectorToRaster</ows:Identifier>
+			<ows:Title>Rasterize features</ows:Title>
+			<ows:Abstract>Rasterize all or selected features in a
+				FeatureCollection</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>gt:Intersect</ows:Identifier>
+			<ows:Title>Intersection</ows:Title>
+			<ows:Abstract>Intersection between two literal geometry
+			</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>gt:DoubleAddition</ows:Identifier>
+			<ows:Title>DoubleAddition</ows:Title>
+			<ows:Abstract>Adds two double precision floating point numbers and
+				returns the sum as a double</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>JTS:contains</ows:Identifier>
+			<ows:Title>Checks if a contains b</ows:Title>
+			<ows:Abstract>Checks if a contains b</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>JTS:isEmpty</ows:Identifier>
+			<ows:Title>Checks if the provided geometry is empty</ows:Title>
+			<ows:Abstract>Checks if the provided geometry is empty</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>JTS:length</ows:Identifier>
+			<ows:Title>Returns the geometry perimeters, computed using cartesian
+				geometry expressions in the same unit of measure as the geometry
+				(will not return a valid perimeter for geometries expressed
+				geographic coordinates</ows:Title>
+			<ows:Abstract>Returns the geometry perimeters, computed using
+				cartesian geometry expressions in the same unit of measure as the
+				geometry (will not return a valid perimeter for geometries expressed
+				geographic coordinates</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>JTS:disjoint</ows:Identifier>
+			<ows:Title>Returns true if the two geometries have no points in
+				common</ows:Title>
+			<ows:Abstract>Returns true if the two geometries have no points in
+				common</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>JTS:intersects</ows:Identifier>
+			<ows:Title>Returns true if the two geometries intersect, false
+				otherwise</ows:Title>
+			<ows:Abstract>Returns true if the two geometries intersect, false
+				otherwise</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>JTS:isClosed</ows:Identifier>
+			<ows:Title>Returns true if the line is closed</ows:Title>
+			<ows:Abstract>Returns true if the line is closed</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>JTS:isValid</ows:Identifier>
+			<ows:Title>Returns true if the geometry is topologically valid, false
+				otherwise</ows:Title>
+			<ows:Abstract>Returns true if the geometry is topologically valid,
+				false otherwise</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>JTS:buffer</ows:Identifier>
+			<ows:Title>Buffers a geometry using a certain distance</ows:Title>
+			<ows:Abstract>Buffers a geometry using a certain distance
+			</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>JTS:intersection</ows:Identifier>
+			<ows:Title>Returns the intersectoin between a and b (eventually an
+				empty collection if there is no intersection)</ows:Title>
+			<ows:Abstract>Returns the intersectoin between a and b (eventually an
+				empty collection if there is no intersection)</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>JTS:union</ows:Identifier>
+			<ows:Title>Performs the geometric union of two or more geometries
+			</ows:Title>
+			<ows:Abstract>Performs the geometric union of two or more geometries
+			</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>JTS:boundary</ows:Identifier>
+			<ows:Title>Returns a geometry boundary, or an empty geometry if there
+				is no boundary</ows:Title>
+			<ows:Abstract>Returns a geometry boundary, or an empty geometry if
+				there is no boundary</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>JTS:getX</ows:Identifier>
+			<ows:Title>Returns the X ordinate of the point</ows:Title>
+			<ows:Abstract>Returns the X ordinate of the point</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>JTS:getY</ows:Identifier>
+			<ows:Title>Returns the Y ordinate of the point</ows:Title>
+			<ows:Abstract>Returns the Y ordinate of the point</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>JTS:crosses</ows:Identifier>
+			<ows:Title>Returns true if the two geometries cross each other
+			</ows:Title>
+			<ows:Abstract>Returns true if the two geometries cross each other
+			</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>JTS:overlaps</ows:Identifier>
+			<ows:Title>Returns true if a overlaps with b</ows:Title>
+			<ows:Abstract>Returns true if a overlaps with b</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>JTS:touches</ows:Identifier>
+			<ows:Title>Returns true if the two geometries touch each other
+			</ows:Title>
+			<ows:Abstract>Returns true if the two geometries touch each other
+			</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>JTS:within</ows:Identifier>
+			<ows:Title>Returns true if a is within b</ows:Title>
+			<ows:Abstract>Returns true if a is within b</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>JTS:distance</ows:Identifier>
+			<ows:Title>Returns the minimum distance between a and b</ows:Title>
+			<ows:Abstract>Returns the minimum distance between a and b
+			</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>JTS:dimension</ows:Identifier>
+			<ows:Title>Returns 0 for points, 1 for lines, 2 for polygons
+			</ows:Title>
+			<ows:Abstract>Returns 0 for points, 1 for lines, 2 for polygons
+			</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>JTS:envelope</ows:Identifier>
+			<ows:Title>Returns the geometry envelope either as a Polygon, or a
+				Point if the input is a Point</ows:Title>
+			<ows:Abstract>Returns the geometry envelope either as a Polygon, or a
+				Point if the input is a Point</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>JTS:isSimple</ows:Identifier>
+			<ows:Title>Returns true if the geometry is simple</ows:Title>
+			<ows:Abstract>Returns true if the geometry is simple</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>JTS:difference</ows:Identifier>
+			<ows:Title>Returns the difference between a and b (all the points
+				that are in a but not in b)</ows:Title>
+			<ows:Abstract>Returns the difference between a and b (all the points
+				that are in a but not in b)</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>JTS:geometryType</ows:Identifier>
+			<ows:Title>Returns the type of the geometry
+				(POINT,LINE,POLYGON,MULTIPOINT,MULTILINE,MULTIPOLYGON,GEOMETRY
+				COLLECTION)</ows:Title>
+			<ows:Abstract>Returns the type of the geometry
+				(POINT,LINE,POLYGON,MULTIPOINT,MULTILINE,MULTIPOLYGON,GEOMETRY
+				COLLECTION)</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>JTS:area</ows:Identifier>
+			<ows:Title>Computes the geometry area (in a cartesian plane, using
+				the same unit of measure as the geometry coordinates, don't use with
+				geometries expressed in geographic coordinates)</ows:Title>
+			<ows:Abstract>Computes the geometry area (in a cartesian plane, using
+				the same unit of measure as the geometry coordinates, don't use with
+				geometries expressed in geographic coordinates)</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>JTS:simplify</ows:Identifier>
+			<ows:Title>Simplifies the geometry using the specified distance using
+				the Douglas-Peuker algorithm</ows:Title>
+			<ows:Abstract>Simplifies the geometry using the specified distance
+				using the Douglas-Peuker algorithm</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>JTS:getGeometryN</ows:Identifier>
+			<ows:Title>Returns the n-th geomery in the collection</ows:Title>
+			<ows:Abstract>Returns the n-th geomery in the collection
+			</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>JTS:isWithinDistance</ows:Identifier>
+			<ows:Title>Returns true if the distance between the two geomeries is
+				less than the specified value</ows:Title>
+			<ows:Abstract>Returns true if the distance between the two geomeries
+				is less than the specified value</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>JTS:relate</ows:Identifier>
+			<ows:Title>Returns the DE-9IM intersection matrix of the two
+				geometries</ows:Title>
+			<ows:Abstract>Returns the DE-9IM intersection matrix of the two
+				geometries</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>JTS:convexHull</ows:Identifier>
+			<ows:Title>Returns the convex hull of the specified geometry
+			</ows:Title>
+			<ows:Abstract>Returns the convex hull of the specified geometry
+			</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>JTS:symDifference</ows:Identifier>
+			<ows:Title>Returns a geometry made of points that are in a or b, but
+				not in both</ows:Title>
+			<ows:Abstract>Returns a geometry made of points that are in a or b,
+				but not in both</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>JTS:equalsExact</ows:Identifier>
+			<ows:Title>Returns true if the two geometries are exactly the same
+			</ows:Title>
+			<ows:Abstract>Returns true if the two geometries are exactly the same
+			</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>JTS:isRing</ows:Identifier>
+			<ows:Title>Returns true if the line is a ring</ows:Title>
+			<ows:Abstract>Returns true if the line is a ring</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>JTS:numPoints</ows:Identifier>
+			<ows:Title>Returns the number of points in the geometry</ows:Title>
+			<ows:Abstract>Returns the number of points in the geometry
+			</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>JTS:startPoint</ows:Identifier>
+			<ows:Title>Returns the start point of the line</ows:Title>
+			<ows:Abstract>Returns the start point of the line</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>JTS:centroid</ows:Identifier>
+			<ows:Title>Extracts a geometry centroid</ows:Title>
+			<ows:Abstract>Extracts a geometry centroid</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>JTS:exteriorRing</ows:Identifier>
+			<ows:Title>Returns the exterior ring of the polygon</ows:Title>
+			<ows:Abstract>Returns the exterior ring of the polygon</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>JTS:interiorPoint</ows:Identifier>
+			<ows:Title>Returns a point that lies inside the geometry, or at most
+				is located on its boundary</ows:Title>
+			<ows:Abstract>Returns a point that lies inside the geometry, or at
+				most is located on its boundary</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>JTS:relatePattern</ows:Identifier>
+			<ows:Title>Returns true if a and b DE-9IM intersection matrix matches
+				the provided pattern</ows:Title>
+			<ows:Abstract>Returns true if a and b DE-9IM intersection matrix
+				matches the provided pattern</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>JTS:equalsExactTolerance</ows:Identifier>
+			<ows:Title>Returns true if the two geometries are exactly the same,
+				minus small differences in coordinate values</ows:Title>
+			<ows:Abstract>Returns true if the two geometries are exactly the
+				same, minus small differences in coordinate values</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>JTS:numGeometries</ows:Identifier>
+			<ows:Title>Returns the number of elements in the geometry collection,
+				or one if it's not a collection</ows:Title>
+			<ows:Abstract>Returns the number of elements in the geometry
+				collection, or one if it's not a collection</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>JTS:pointN</ows:Identifier>
+			<ows:Title>Returns the n-th point in the line</ows:Title>
+			<ows:Abstract>Returns the n-th point in the line</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>JTS:endPoint</ows:Identifier>
+			<ows:Title>Returns the end point of the line</ows:Title>
+			<ows:Abstract>Returns the end point of the line</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>JTS:numInteriorRing</ows:Identifier>
+			<ows:Title>Returns the number of interior rings in the polygon
+			</ows:Title>
+			<ows:Abstract>Returns the number of interior rings in the polygon
+			</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>JTS:interiorRingN</ows:Identifier>
+			<ows:Title>Returns the n-th interior ring in the polygon</ows:Title>
+			<ows:Abstract>Returns the n-th interior ring in the polygon
+			</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>JTS:densify</ows:Identifier>
+			<ows:Title>Densifies the geometry using the specified distance
+			</ows:Title>
+			<ows:Abstract>Densifies the geometry using the specified distance
+			</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="0.0.4">
+			<ows:Identifier>gt:RasterToVector</ows:Identifier>
+			<ows:Title>Vectorize raster regions</ows:Title>
+			<ows:Abstract>Raster region to vector polygon conversion
+			</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>gt:BufferFeatureCollection</ows:Identifier>
+			<ows:Title>Buffer Features</ows:Title>
+			<ows:Abstract>Buffer each Feature in a Feature Collection
+			</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>gt:buffer</ows:Identifier>
+			<ows:Title>Buffer</ows:Title>
+			<ows:Abstract>Buffer a geometry</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>gs:Aggregate</ows:Identifier>
+			<ows:Title>Computes various attribute statistics over vector data
+				sets</ows:Title>
+			<ows:Abstract>Computes various attribute statistics over vector data
+				sets</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>gs:Bounds</ows:Identifier>
+			<ows:Title>Computes the overlall bounds of the input features
+			</ows:Title>
+			<ows:Abstract>Computes the overlall bounds of the input features
+			</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>gs:CollectGeometries</ows:Identifier>
+			<ows:Title>Collects all the default geometries in the feature
+				collection and returns them as a single geometry collection
+			</ows:Title>
+			<ows:Abstract>Collects all the default geometries in the feature
+				collection and returns them as a single geometry collection
+			</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>gs:Contour</ows:Identifier>
+			<ows:Title>Perform the contouring on a provided raster</ows:Title>
+			<ows:Abstract>Perform the contouring on a provided raster
+			</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>gs:Count</ows:Identifier>
+			<ows:Title>Counts the number of features in the specified collection
+			</ows:Title>
+			<ows:Abstract>Counts the number of features in the specified
+				collection</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>gs:CropCoverage</ows:Identifier>
+			<ows:Title>Collects all the default geometries in the feature
+				collection and returns them as a single geometry collection
+			</ows:Title>
+			<ows:Abstract>Collects all the default geometries in the feature
+				collection and returns them as a single geometry collection
+			</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>gs:Import</ows:Identifier>
+			<ows:Title>Imports the provided feature collection into the catalog
+			</ows:Title>
+			<ows:Abstract>Imports the provided feature collection into the
+				catalog</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>gs:Nearest</ows:Identifier>
+			<ows:Title>Get nearest feature</ows:Title>
+			<ows:Abstract>Get nearest feature</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>gs:PointBuffers</ows:Identifier>
+			<ows:Title>Generates a set of polygons, each representing the set of
+				points within a given distance from the central pointThe data layer
+				must be a point layer, the reference layer must be a polygonal one
+			</ows:Title>
+			<ows:Abstract>Generates a set of polygons, each representing the set
+				of points within a given distance from the central pointThe data
+				layer must be a point layer, the reference layer must be a polygonal
+				one</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>gs:PolygonExtraction</ows:Identifier>
+			<ows:Title>Perform the polygon extraction on a provided raster
+			</ows:Title>
+			<ows:Abstract>Perform the polygon extraction on a provided raster
+			</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>gs:Query</ows:Identifier>
+			<ows:Title>Applies a filter and an attribute selection to the
+				incoming feature collection. The process can be also used as a pure
+				format converter when no filtering or attribute selection is
+				performed</ows:Title>
+			<ows:Abstract>Applies a filter and an attribute selection to the
+				incoming feature collection. The process can be also used as a pure
+				format converter when no filtering or attribute selection is
+				performed</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>gs:RangeLookup</ows:Identifier>
+			<ows:Title>Reclassifies a continous coverage into a set of ranges
+				identified by a number</ows:Title>
+			<ows:Abstract>Reclassifies a continous coverage into a set of ranges
+				identified by a number</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>gs:RasterAsPointCollection</ows:Identifier>
+			<ows:Title>Convert a Raster into a collections of points</ows:Title>
+			<ows:Abstract>Convert a Raster into a collections of points
+			</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>gs:RasterZonalStatistics</ows:Identifier>
+			<ows:Title>Provides statistics for the distribution of a certain
+				quantity in a set of reference areas. The data layer is a raster
+				layer, the reference layer must be a polygonal one</ows:Title>
+			<ows:Abstract>Provides statistics for the distribution of a certain
+				quantity in a set of reference areas. The data layer is a raster
+				layer, the reference layer must be a polygonal one</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>gs:RectangularClip</ows:Identifier>
+			<ows:Title>Clips the features to the specified bounding box
+			</ows:Title>
+			<ows:Abstract>Clips the features to the specified bounding box
+			</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>gs:Reproject</ows:Identifier>
+			<ows:Title>Reprojects the specified features to another CRS, can also
+				be used to force a known CRS onto a set of feaures that miss one (or
+				that have a wrong one)</ows:Title>
+			<ows:Abstract>Reprojects the specified features to another CRS, can
+				also be used to force a known CRS onto a set of feaures that miss
+				one (or that have a wrong one)</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>gs:ReprojectGeometry</ows:Identifier>
+			<ows:Title>Reprojects the specified geometry from the source CRS to
+				the target one)</ows:Title>
+			<ows:Abstract>Reprojects the specified geometry from the source CRS
+				to the target one)</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>gs:ScaleCoverage</ows:Identifier>
+			<ows:Title>Applies a generic scale and translate operation to a
+				coverage</ows:Title>
+			<ows:Abstract>Applies a generic scale and translate operation to a
+				coverage</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>gs:Simplify</ows:Identifier>
+			<ows:Title>Simplifies the geometry</ows:Title>
+			<ows:Abstract>Simplifies the geometry</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>gs:Snap</ows:Identifier>
+			<ows:Title>Snap to the nearest feature</ows:Title>
+			<ows:Abstract>Snap to the nearest feature</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>gs:StoreCoverage</ows:Identifier>
+			<ows:Title>Applies a raster symbolizer to the coverage</ows:Title>
+			<ows:Abstract>Applies a raster symbolizer to the coverage
+			</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>gs:StyleCoverage</ows:Identifier>
+			<ows:Title>Applies a raster symbolizer to the coverage</ows:Title>
+			<ows:Abstract>Applies a raster symbolizer to the coverage
+			</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>gs:Unique</ows:Identifier>
+			<ows:Title>Returns the unique values of a certain attribute
+			</ows:Title>
+			<ows:Abstract>Returns the unique values of a certain attribute
+			</ows:Abstract>
+		</wps:Process>
+		<wps:Process wps:processVersion="1.0.0">
+			<ows:Identifier>gs:VectorZonalStatistics</ows:Identifier>
+			<ows:Title>Provides statistics for the distribution of a certain
+				quantity in a set of reference areas. The data layer must be a point
+				layer, the reference layer must be a polygonal one</ows:Title>
+			<ows:Abstract>Provides statistics for the distribution of a certain
+				quantity in a set of reference areas. The data layer must be a point
+				layer, the reference layer must be a polygonal one</ows:Abstract>
+		</wps:Process>
+	</wps:ProcessOfferings>
+	<wps:Languages>
+		<wps:Default>
+			<ows:Language>en-US</ows:Language>
+		</wps:Default>
+		<wps:Supported>
+			<ows:Language>en-US</ows:Language>
+		</wps:Supported>
+	</wps:Languages>
+</wps:Capabilities>

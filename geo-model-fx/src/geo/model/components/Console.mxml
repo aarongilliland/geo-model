@@ -13,5 +13,5 @@
 		]]>
 	</fx:Script>
 	
-	<s:TextArea id="console" />
+	<s:TextArea id="console" width="100%" height="100%"/>
 </s:Group>

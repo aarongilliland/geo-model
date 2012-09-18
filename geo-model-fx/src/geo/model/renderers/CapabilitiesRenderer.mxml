@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:GridItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+					xmlns:s="library://ns.adobe.com/flex/spark" 
+					xmlns:mx="library://ns.adobe.com/flex/mx" clipAndEnableScrolling="true">
+	
+	<fx:Script>
+		<![CDATA[
+			import assets.icons.EmbeddedIcons;
+			override public function prepare(hasBeenRecycled:Boolean):void {
+				lblData.text = data[column.dataField]
+			}
+		]]>
+	</fx:Script>
+	
+	<s:Label id="lblData" top="8" left="32" />
+	<s:BitmapImage source="{assets.icons.EmbeddedIcons.HAMMER}" top="2" left="2" scaleX="0.8" scaleY="0.8"/>
+	
+</s:GridItemRenderer>
