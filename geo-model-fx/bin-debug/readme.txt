@@ -1,0 +1,1 @@
+Build directory for Eclipse/FlashBuilder. This directory should only contain this folder to avoid putting binaries into version control.
