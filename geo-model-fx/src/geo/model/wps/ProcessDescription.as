@@ -3,11 +3,11 @@ package geo.model.wps
 	import flash.display.Sprite;
 	
 	import mx.collections.ArrayCollection;
-	import mx.controls.List;
+	import mx.collections.ArrayList;
 	
-	public class Description
+	public class ProcessDescription
 	{
-		public function Description()
+		public function ProcessDescription()
 		{
 			super();
 		}
@@ -15,12 +15,12 @@ package geo.model.wps
 		/**
 		 * Supported output formats.
 		 */
-		public var outputFormats:List;
+		public var outputFormats:ArrayList;
 		
 		/**
 		 * Supported input formats.
 		 */
-		public var inputFormats:List;
+		public var inputFormats:ArrayList;
 		
 		/**
 		 * Abstract actual description of the process.
