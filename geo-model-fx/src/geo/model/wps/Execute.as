@@ -8,6 +8,10 @@ package geo.model.actions
 	
 	/**
 	 * Execute extends the flash.geom.Rectangle object. That way it is easily diagrammable.
+	 * The final Object built to be easily marshalled into the WPS Execute XML.
+	 * This Execute Object is marshalled to XML then sent (HTTP POST) to the WPS Server.
+	 * The manipulation of this object and its related inputs, response format, etc occurs
+	 * in the workflow (diagram) triggered upon a DropEvent.
 	 */
 	public class Execute extends Rectangle
 	{
