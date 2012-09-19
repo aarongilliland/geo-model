@@ -7,7 +7,7 @@ package geo.model.actions
 	import mx.collections.ArrayList;
 	
 	/**
-	 * Process extends the flash.geom.Rectangle object. That way it is easily diagrammable.
+	 * Execute extends the flash.geom.Rectangle object. That way it is easily diagrammable.
 	 */
 	public class Execute extends Rectangle
 	{
