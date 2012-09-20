@@ -17,7 +17,7 @@
 		<![CDATA[
 			
 			private function init():void {
-				capList.wpsURL = "http://localhost:18080/geoserver/wps";
+				capList.wpsURL = "http://localhost:8080/geoserver/wps";
 			}
 			
 		]]>
