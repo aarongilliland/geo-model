@@ -4,15 +4,13 @@
 		  xmlns:mx="library://ns.adobe.com/flex/mx"
 		  xmlns:components="geo.model.components.*"
 		  width="500" height="400" creationComplete="init()" horizontalAlign="center">
-	<fx:Declarations>
-		<!-- Place non-visual elements (e.g., services, value objects) here -->
-	</fx:Declarations>
-	
+
 	<fx:Script>
 		<![CDATA[
 			import geo.model.utils.XMLUtil;
 			
 			import mx.controls.Alert;
+			import mx.events.DragEvent;
 			import mx.rpc.AsyncToken;
 			import mx.rpc.Responder;
 			import mx.rpc.events.FaultEvent;
@@ -69,11 +67,27 @@
 				
 			}
 			
+			protected function dgCapabilities_dragStartHandler(event:DragEvent):void
+			{
+				// TODO Auto-generated method stub
+				//Alert.show(event.currentTarget.toString());
+				trace(event.target.toString());
+			}
 		]]>
 	</fx:Script>
-	
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
 	<s:Button label="Show Processes" id="showCapabilities" click="showCapabilities_clickHandler(event)" />
 	<!--<mx:Tree id="processTree" width="100%" height="100%" labelField="Identifier"/>-->
-	<s:DataGrid id="dgCapabilities" width="100%" height="100%" itemRenderer="geo.model.renderers.CapabilitiesRenderer"/>
-	<!--<components:Console id="con" />-->
+	<!--<s:DataGrid id="dgCapabilities" width="100%" height="100%" 
+				itemRenderer="geo.model.renderers.CapabilitiesRenderer" 
+				dragStart="dgCapabilities_dragStartHandler(event)"/>-->
+		 
+	<mx:DataGrid id="dgCapabilities" width="100%" height="100%" dragMoveEnabled="false" allowMultipleSelection="true"
+				 dragEnabled="true" dragStart="dgCapabilities_dragStartHandler(event)">
+		<mx:columns>
+			<mx:DataGridColumn dataField="Process" itemRenderer="geo.model.renderers.CapabilitiesRenderer" />
+		</mx:columns>
+	</mx:DataGrid>
 </s:VGroup>
