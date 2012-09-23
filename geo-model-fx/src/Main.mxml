@@ -3,11 +3,7 @@
 			   xmlns:s="library://ns.adobe.com/flex/spark" 
 			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600"
 			   xmlns:gmcomp="geo.model.components.*" creationComplete="init()">
-	<fx:Script>
-		<![CDATA[
-			import assets.icons.EmbeddedIcons;
-		]]>
-	</fx:Script>
+
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
@@ -16,16 +12,29 @@
 	<fx:Script>
 		<![CDATA[
 			
+<<<<<<< HEAD
 			private function init():void {
 				capList.wpsURL = "http://localhost:8080/geoserver/wps";
 			}
+=======
+ 			private function init():void {
+				capList.wpsURL = "http://localhost:18080/geoserver/wps";
+				con.log("URL:" + capList.wpsURL);
+			} 
+>>>>>>> fb0b79c42c0ff9af757fa43a045604a373ef98e7
 			
 		]]>
 	</fx:Script>
-	<s:HGroup>
-		<s:VGroup>
+	<s:HGroup id="hGroup1">
+
+		<s:VGroup id="vGroup1">
 			<gmcomp:Capabilities id="capList" width="200"/>
 			<gmcomp:Console id="con" />
 		</s:VGroup>
+		<s:VGroup id="vGroup2">
+			<gmcomp:Workflow id="wfComp" x="210" y="10" width="725" height="575"/>
+		</s:VGroup>	
 	</s:HGroup>
+	
+
 </s:Application>

@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:VGroup xmlns:fx="http://ns.adobe.com/mxml/2009"
-		  xmlns:s="library://ns.adobe.com/flex/spark"
-		  xmlns:mx="library://ns.adobe.com/flex/mx"
-		  xmlns:components="geo.model.components.*"
-		  width="500" height="400" creationComplete="init()" horizontalAlign="center">
-
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600"
+			   xmlns:gmcomp="geo.model.components.*" creationComplete="init()">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	
 	<fx:Script>
 		<![CDATA[
 			import geo.model.utils.XMLUtil;
-			
+			import assets.icons.EmbeddedIcons;
 			import mx.controls.Alert;
 			import mx.events.DragEvent;
 			import mx.rpc.AsyncToken;
@@ -27,7 +30,8 @@
 			[Bindable]public var wpsURL:String = "";
 			
 			private function init():void {
-				//this.getCapabilities(wpsURL);
+				this.wpsURL = "http://localhost:18080/geoserver/wps";
+				con.log("URL:" + this.wpsURL);
 			}
 			
 			private function getCapabilities(urlEndpoint:String = null):void {
@@ -67,7 +71,7 @@
 				
 			}
 			
- 			protected function dgCapabilities_dragStartHandler(event:DragEvent):void
+			protected function dgCapabilities_dragStartHandler(event:DragEvent):void
 			{
 				// TODO Auto-generated method stub
 				//Alert.show(event.currentTarget.toString());
@@ -75,22 +79,27 @@
 			} 
 		]]>
 	</fx:Script>
-	<fx:Declarations>
-		<!-- Place non-visual elements (e.g., services, value objects) here -->
-	</fx:Declarations>
-	<s:Button label="Show Processes" id="showCapabilities" click="showCapabilities_clickHandler(event)" />
-	<!--<mx:Tree id="processTree" width="100%" height="100%" labelField="Identifier"/>-->
-	<!--<s:DataGrid id="dgCapabilities" width="100%" height="100%" 
+	<s:HGroup>
+		<s:VGroup>
+			<s:VGroup id="capList" width="500" height="400" creationComplete="init()" horizontalAlign="center">
+				
+				<s:Button label="Show Processes" id="showCapabilities" click="showCapabilities_clickHandler(event)" />
+				<!--<mx:Tree id="processTree" width="100%" height="100%" labelField="Identifier"/>-->
+				<!--<s:DataGrid id="dgCapabilities" width="100%" height="100%" 
 				itemRenderer="geo.model.renderers.CapabilitiesRenderer" 
 				dragStart="dgCapabilities_dragStartHandler(event)"/>-->
-		 
-	<mx:DataGrid id="dgCapabilities" width="100%" height="100%" 
-				 allowMultipleSelection="true"
-				 dragMoveEnabled="true" 
-				 dragEnabled="true" 
-				 dragStart="dgCapabilities_dragStartHandler(event)">
-		<mx:columns>
-			<mx:DataGridColumn dataField="Process" itemRenderer="geo.model.renderers.CapabilitiesRenderer" />
-		</mx:columns>
-	</mx:DataGrid>
-</s:VGroup>
+				
+				<mx:DataGrid id="dgCapabilities" width="100%" height="100%" 
+							 allowMultipleSelection="true"
+							 dragMoveEnabled="true" 
+							 dragEnabled="true" 
+							 dragStart="dgCapabilities_dragStartHandler(event)">
+					<mx:columns>
+						<mx:DataGridColumn dataField="Process" itemRenderer="geo.model.renderers.CapabilitiesRenderer" />
+					</mx:columns>
+				</mx:DataGrid>
+			</s:VGroup>
+			<gmcomp:Console id="con" />
+		</s:VGroup>
+	</s:HGroup>
+</s:Application>

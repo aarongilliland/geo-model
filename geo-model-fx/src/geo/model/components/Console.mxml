@@ -8,7 +8,7 @@
 	<fx:Script>
 		<![CDATA[
 			public function log(str:String = null):void {
-				console.text += "/n" + str;
+				console.text += "\n" + str;
 			}
 		]]>
 	</fx:Script>

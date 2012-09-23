@@ -15,9 +15,9 @@
   </compiler>
   <applications>
     <application path="Main.mxml"/>
+    <application path="MainAll.mxml"/>
   </applications>
   <modules/>
   <buildCSSFiles/>
   <flashCatalyst validateFlashCatalystCompatibility="false"/>
 </actionScriptProperties>
-
