@@ -10,7 +10,7 @@
 
 		]]>
 	</fx:Script>
-	<s:HGroup verticalAlign="middle">
+	<s:HGroup paddingLeft="4" verticalAlign="middle">
 		<s:Image source="{assets.icons.EmbeddedIcons.HAMMER}" scaleX="0.6" scaleY="0.6"/>
 		<s:Label id="lblData" text="{dataGridListData.label}" fontSize="10"/>
 	</s:HGroup>
