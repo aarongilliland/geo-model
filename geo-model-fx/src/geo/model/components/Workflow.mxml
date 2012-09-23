@@ -6,43 +6,79 @@
 		 creationComplete="init();">
 	<fx:Script>
 		<![CDATA[
+			import geo.model.utils.XMLUtil;
+			import geo.model.wps.ProcessDescription;
+			
 			import mx.controls.Alert;
 			import mx.events.DragEvent;
 			import mx.managers.DragManager;
-			
-/* 			public function wf_dragDropHandler(event:DragEvent):void
-			{
-				var dropTarget:Canvas = event.currentTarget as Canvas;
-				DragManager.acceptDragDrop(dropTarget);
-				trace("drag drop");
-			}
-			
-			public function wf_dragEnterHandler(event:DragEvent):void
-			{
-
-				trace("drag enter");
-			} */
+			import mx.rpc.AsyncToken;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			import mx.rpc.http.HTTPService;
 			
 			private function init():void {
-				wf.addEventListener( DragEvent.DRAG_ENTER, wf_dragEnterHandler );
-				wf.addEventListener( DragEvent.DRAG_DROP, wf_dragDropHandler );
+			
 			}
 			
 			private function wf_dragEnterHandler(event:DragEvent):void
 			{
-				trace("drag enter");	
-				var data:Array = event.dragSource.dataForFormat("Process") as Array;
-				if (data && data.length > 0)
-					DragManager.acceptDragDrop(wf);
-				//DragManager.showFeedback( DragManager.COPY );
+				trace("dragEnterHandler");
+				if (event.dragSource.hasFormat("items"))
+					DragManager.acceptDragDrop(Canvas(event.currentTarget));	
+			}
+			
+			private function wf_dragOverHandler(event:DragEvent):void
+			{
+				trace("dragOverHandler");
+				if (event.dragSource.hasFormat("items"))
+					DragManager.showFeedback(DragManager.COPY);
 			}
 			
 			private function wf_dragDropHandler(event:DragEvent):void
 			{
-				trace("drag drop");
-				var data:Array = event.dragSource.dataForFormat("Process") as Array;
-				trace(data[0].Process);
-				//input.text = data[0].name;
+				trace("dragDropHandler");
+				var droppedProcess:Object = Object(event.dragInitiator).selectedItem;
+				//Process Name to Send to the WorkflowChangeAction
+				trace(droppedProcess.NS + ":" + droppedProcess.Process);
+				var id:String = (droppedProcess.NS + ":" + droppedProcess.Process);
+				this.describeProcess("http://localhost:8080/geoserver/wps",id);
+				event.preventDefault();
+				var itemsArray:Array = event.dragSource.dataForFormat("items") as Array;
+				Canvas(event.currentTarget).label=itemsArray[0].label;
+			}
+			
+			private function describeProcess(urlEndpoint:String = null, id:String = null):void {
+				trace("sending describe process request");
+				var service:HTTPService = new HTTPService();
+				service.url = urlEndpoint;
+				service.request = {request:"DescribeProcess",service:"WPS",identifier:id};
+				service.method = "GET";
+				service.resultFormat = "e4x";
+				service.useProxy = false;
+				var token:AsyncToken = new AsyncToken();
+				token = service.send();
+				token.addResponder(new mx.rpc.Responder(resultHandler,faultHandler));
+			} 
+			
+			private function resultHandler(event:ResultEvent):void {
+				var resultXML:XML = event.result as XML;
+				trace("RESULT");
+				trace(resultXML.toXMLString());
+				try{
+					var processDescription:ProcessDescription = XMLUtil.toProcessDescription(resultXML);
+					trace("Populating process description");
+					for(var i:int;i<processDescription.outputFormats.length; i++) {
+						trace(processDescription.outputFormats[i]);
+					}
+				} catch (e:Error) {
+					Alert.show(e.message,"Error");
+					//con.log(e.message);
+				}
+			}
+			
+			private function faultHandler(event:FaultEvent):void {
+				Alert.show(event.fault.faultString);
 			}
 			
 		]]>
@@ -55,5 +91,6 @@
 	
 	<mx:Canvas id="wf" width="100%" height="100%" backgroundColor="0xEBEBFF"
 			   dragDrop="wf_dragDropHandler(event)" 
-			   dragEnter="wf_dragEnterHandler(event)" />
+			   dragEnter="wf_dragEnterHandler(event)"
+			   dragOver="wf_dragOverHandler(event)"/>
 </s:VGroup>

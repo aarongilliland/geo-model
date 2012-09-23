@@ -15,12 +15,12 @@ package geo.model.wps
 		/**
 		 * Supported output formats.
 		 */
-		public var outputFormats:ArrayList;
+		public var outputFormats:Array;
 		
 		/**
 		 * Supported input formats.
 		 */
-		public var inputFormats:ArrayList;
+		public var inputFormats:Array;
 		
 		/**
 		 * Abstract actual description of the process.

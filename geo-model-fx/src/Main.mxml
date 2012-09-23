@@ -12,16 +12,10 @@
 	<fx:Script>
 		<![CDATA[
 			
-<<<<<<< HEAD
-			private function init():void {
-				capList.wpsURL = "http://localhost:8080/geoserver/wps";
-			}
-=======
  			private function init():void {
-				capList.wpsURL = "http://localhost:18080/geoserver/wps";
+				capList.wpsURL = "http://localhost:8080/geoserver/wps";
 				con.log("URL:" + capList.wpsURL);
 			} 
->>>>>>> fb0b79c42c0ff9af757fa43a045604a373ef98e7
 			
 		]]>
 	</fx:Script>

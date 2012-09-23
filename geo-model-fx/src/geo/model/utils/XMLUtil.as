@@ -1,6 +1,9 @@
 package geo.model.utils
 {
+	import geo.model.wps.ProcessDescription;
+	
 	import mx.collections.ArrayCollection;
+	import mx.collections.ArrayList;
 	import mx.utils.XMLUtil;
 	
 	public class XMLUtil 
@@ -24,10 +27,25 @@ package geo.model.utils
 				var procArr:Array = p.split(":");
 				//var ns:String = p.split(":",1)[0];
 				//var process:String = p.split(":",1)[2];
-				var obj:Object = {Process:procArr[1]};
+				var obj:Object = {Process:procArr[1],NS:procArr[0]};
 				ac.addItem(obj);
 			}
 			return ac;
+		}
+		
+		public static function toProcessDescription(xml:XML):ProcessDescription {
+			var processDescription:ProcessDescription = new ProcessDescription();
+			processDescription.outputFormats = new Array();
+			/*for(var s:String in xml..WPS::DataInputs..WPS::Supported..WPS::MimeType) {
+				processDescription.inputFormats.addItem(s);	
+			}*/
+			
+			for each(var s:String in xml..ProcessOutputs..Supported..MimeType) {
+				trace("IM IN");
+				processDescription.outputFormats.push(s);
+			}
+			
+			return processDescription;
 		}
 		
 	}
