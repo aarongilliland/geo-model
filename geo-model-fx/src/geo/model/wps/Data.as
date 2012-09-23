@@ -4,7 +4,7 @@ package geo.model.wps
 
 	/**
 	 * Class representing the input data elements for WPS Processing.
-	 * Typically on a Process (WPSExecute).
+	 * Typically on a Execute (WPSExecute).
 	 * The Data Object is simply a wrapper for the ComplexData object containing further information.
 	 */
 	public class Data
